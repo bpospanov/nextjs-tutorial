@@ -16,7 +16,7 @@ export default function Signup() {
       email,
       password,
       options: {
-        emailRedirectTo: `${location.origin}/api/auth/verify`,
+        emailRedirectTo: `${location.origin}/api/auth/callback`,
       },
     });
 
