@@ -1,22 +1,14 @@
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 
-export const dynamic = 'force-dynamic';
-
-export async function GET(_, { params }) {
+export async function DELETE(_, { params }) {
   const id = params.id;
-  const res = await fetch(`http://localhost:4000/tickets/${id}`);
-  const ticket = await res.json();
 
-  if (!res.ok) {
-    return NextResponse.json(
-      { error: 'Can not find the ticket' },
-      {
-        status: 404,
-      },
-    );
-  }
+  const supabase = createRouteHandlerClient({ cookies });
 
-  return NextResponse.json(ticket, {
-    status: 200,
-  });
+  // invalid input syntax for type bigint: "7)"
+  const { error } = await supabase.from('Tickets').delete().eq('id', id);
+
+  return NextResponse.json({ error });
 }
