@@ -1,7 +1,7 @@
 async function getTickets() {
   const res = await fetch('http://localhost:4000/tickets', {
     next: {
-      revalidate: 30,
+      revalidate: 0, // no cache, set to 30 to revalidate data after 30 seconds
     },
   });
 
