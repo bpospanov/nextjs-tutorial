@@ -32,7 +32,7 @@ export default function Login() {
     <main>
       <h2 className="text-center">Log in</h2>
       <AuthForm handleSubmit={handleSubmit} />
-      {error & <div className="error">{error}</div>}
+      {error && <div className="error">{error}</div>}
     </main>
   );
 }
